@@ -24,5 +24,9 @@ public class GInfo extends AppCompatActivity {
 
         System.out.println("get_data::"+full_name+"\n"+user_name+"\n"+email+"\n"+phone_no+"\n"+password);
         txt_display.setText(full_name+"\n"+user_name+"\n"+email+"\n"+phone_no+"\n"+password);
+
+
+
     }
+
 }
