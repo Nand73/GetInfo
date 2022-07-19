@@ -15,7 +15,7 @@ public class GInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ginfo);
         txt_display=findViewById(R.id.txt_display);
-        pref=getSharedPreferences("info",MODE_PRIVATE);
+        pref = getSharedPreferences("info", MODE_PRIVATE);
         full_name=pref.getString("full_name","");
         user_name=pref.getString("user_name","");
         email=pref.getString("email","");

@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     CheckBox CheckB1;
     SharedPreferences pref;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,49 +61,63 @@ public class MainActivity extends AppCompatActivity {
                         if (!email__.isEmpty()) {
                             email_var.setError(null);
                             email_var.setErrorEnabled(false);
-                            if (errors()) {
-
+                            if (email__.matches("^(.+)@(.+)$")){
+                                email_var.setError(null);
+                                email_var.setErrorEnabled(false);
+                         //   if (errors()) {
+                                 if(!phone__.isEmpty()){
+                                     phone_var.setError(null);
+                                     phone_var.setErrorEnabled(false);
+                                     if(phone__.length()!=10){
+                                         phone_var.setError(null);
+                                         phone_var.setErrorEnabled(false);
                                 if (!password__.isEmpty()) {
                                     passord_varr.setError(null);
                                     passord_varr.setErrorEnabled(false);
-                                    if (!email__.matches("\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b")) {
-                                        if (error()) {
+
+                                    if (error()) {
 
 
-                                            String full__s = full_var.getEditText().getText().toString();
-                                            String user__s = user_varr.getEditText().getText().toString();
-                                            String email__s = email_var.getEditText().getText().toString();
-                                            String phone__s = phone_var.getEditText().getText().toString();
-                                            String password__s = passord_varr.getEditText().getText().toString();
-                                            System.out.println("get_data::"+full__s+"\n"+user__s+"\n"+email__s+"\n"+phone__s+"\n"+password__s);
-                                            pref=getSharedPreferences("info",MODE_PRIVATE);
-                                            SharedPreferences.Editor editor=pref.edit();
-                                            editor.putString("full__s",full__s);
-                                            editor.putString("user__s",user__s);
-                                            editor.putString("email__s",email__s);
-                                            editor.putString("phone__s",phone__s);
-                                            editor.putString("password__s",password__s);
-                                            editor.commit();
-                                            editor.apply();
-                                            Intent intent=new Intent(getApplicationContext(),GInfo.class);
-                                            startActivity(intent);
+                                        String full__s = full_var.getEditText().getText().toString();
+                                        String user__s = user_varr.getEditText().getText().toString();
+                                        String email__s = email_var.getEditText().getText().toString();
+                                        String phone__s = phone_var.getEditText().getText().toString();
+                                        String password__s = passord_varr.getEditText().getText().toString();
+                                        System.out.println("get_data::" + full__s + "\n" + user__s + "\n" + email__s + "\n" + phone__s + "\n" + password__s);
+                                        pref = getSharedPreferences("info", MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = pref.edit();
+                                        editor.putString("full__s", full__s);
+                                        editor.putString("user__s", user__s);
+                                        editor.putString("email__s", email__s);
+                                        editor.putString("phone__s", phone__s);
+                                        editor.putString("password__s", password__s);
+                                        editor.commit();
+                                        editor.apply();
+                                        Intent intent = new Intent(getApplicationContext(), GInfo.class);
+                                        startActivity(intent);
 
 
-                                            Toast.makeText(MainActivity.this, "Register Successfully", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MainActivity.this, "Register Successfully", Toast.LENGTH_SHORT).show();
 
 
-                                        }
-                                    } else {
-                                        email_var.setError("invalid email");
                                     }
                                 } else {
-                                    passord_varr.setError("password ");
+                                    passord_varr.setError("Enter your password");
                                 }
+                                     }else{
+                                         phone_var.setError("Enter the valid no");
+                                     }
+                            }else {
+                                     phone_var.setError("Enter the phone no");
+                                     }
 
-                            }
+
+                                } else {
+                           email_var.setError("invalid email ");
+                       }
 
                         } else {
-                            email_var.setError("Enter the email");
+                            email_var.setError("Enter the  email");
                         }
                     } else {
                         user_varr.setError("Enter your user name");
@@ -115,18 +130,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-        private boolean errors () {
-            if (phone_var.getEditText().getText().toString().length() == 0) {
-                Toast.makeText(this, "please fill mobile no", Toast.LENGTH_SHORT).show();
-                return false;
-            }
 
-            if (phone_var.getEditText().getText().toString().length() != 10) {
-                Toast.makeText(this, "please enter the valid no", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-            return true;
-        }
+
         private boolean error () {
 
             if (!RadioB1.isChecked() && !RadioB2.isChecked()) {
